@@ -166,6 +166,58 @@
       </div>
     </div>
   </section>
+ 
+  <section id="itineraries-link">
+    <div class="container">
+        <h1 class="section-title">Shiko <span>Itineraret</span></h1>
+        <p>Zbuloni udhëtimet dhe eksperiencat më të mira që ofrojmë!</p>
+        <a href="../pages/itineraries.php" class="btn">Shiko Itineraret</a>
+    </div>
+</section>
+
+<!-- CSS për stilimin -->
+<style>
+    #itineraries-link {
+        padding: 50px 0;
+        text-align: center;
+        background-color: #f9f9f9;
+    }
+
+    #itineraries-link .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    #itineraries-link h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    #itineraries-link p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    #itineraries-link .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #itineraries-link .btn:hover {
+        background-color: #45a049;
+    }
+</style>
+
+
+
   <section id="about">
     <div class="about container">
       <div class="col-left">
