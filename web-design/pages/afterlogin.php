@@ -176,6 +176,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
       </div>
     </div>
   </section>
+  <section id="itineraries-link">
+    <div class="container">
+        <h1 class="section-title">Shiko <span>Itineraret</span></h1>
+        <p>Zbuloni udhëtimet dhe eksperiencat më të mira që ofrojmë!</p>
+        <a href="../../web-design/pages/itineraries.php" class="btn">Shiko Itineraret</a>
+    </div>
+</section>
   <section id="about">
     <div class="about container">
       <div class="col-left">
@@ -241,6 +248,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
       </div>
       <p>Copyright © 2023 JO-NA. All rights reserved</p>
     </div>
+    <div class="footer-links">
+    <a href="../../web-design/pages/review_form.php" class="footer-link">Reviews</a>
+</div>
   </section>
   <script src="../../web-design/js/main.js"></script>
 </body>

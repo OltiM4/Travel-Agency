@@ -286,6 +286,10 @@
       </div>
       <p>Copyright © 2023 JO-NA. All rights reserved</p>
     </div>
+    <!-- Add this inside the <div class="footer container"> in both index.php and afterlogin.php -->
+    <div class="footer-links">
+    <a href="../../web-design/pages/review_form.php" class="footer-link">Reviews</a>
+</div>
   </section>
   <script src="../../web-design/js/main.js"></script>
 </body>

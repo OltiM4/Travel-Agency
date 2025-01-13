@@ -780,3 +780,20 @@ p {
     font-size: 18px;
     margin-bottom: 20px;
 }
+
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-link {
+    color: #fff; /* Adjust color to fit your design */
+    background-color: #4CAF50; /* Green background */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-link:hover {
+    background-color: #367c39; /* Darker green on hover */
+}
