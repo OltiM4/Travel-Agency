@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/book.css">
+  <link rel="stylesheet" href="../css/book.css"> <!-- Verify the path -->
   <title>JO-NA Book</title>
 </head>
-
 <body>
 <?php
 session_start(); 
-
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
     header("Location: login.php");
     exit();
 }
-
 ?>
 <section id="header">
    <div class="header container">
@@ -36,7 +32,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
           <li><a href="afterlogin.php#projects" data-after="Service">Package</a></li>
           <li><a href="afterlogin.php#about" data-after="About">About</a></li>
           <li><a href="afterlogin.php#contact" data-after="Contact">Contact</a></li>
-          <li><a href="index.php" data-after="Book">LogOut</a></li>
+          <li><a href="logout.php" data-after="LogOut">LogOut</a></li>
          </ul>
        </div>
      </div>
@@ -47,10 +43,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
 </div>
 
 <section class="booking">
-
    <h1 class="heading-title">book your trip!</h1>
-
-   <form action="../../auth/config/bConfig.php" method="post" class="book-form">
+   <form action="../../booking-process/process_payment.php" method="post" class="book-form">
 
       <div class="flex">
          <div class="inputBox">
@@ -78,11 +72,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
             <input type="date" name="leaving">
          </div>
       </div>
-
       <input type="submit" value="submit" class="btn" name="send">
-
    </form>
-
 </section>
 
 <section id="footer">
@@ -94,7 +85,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
        <div class="social-item">
          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
        </div>
-       <div class="social-item">
+       <div the="social-item">
          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
        </div>
      </div>
