@@ -50,7 +50,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
 
    <h1 class="heading-title">book your trip!</h1>
 
-   <form action="../config/bConfig.php" method="post" class="book-form">
+   <form action="../../auth/config/bConfig.php" method="post" class="book-form">
 
       <div class="flex">
          <div class="inputBox">
@@ -102,7 +102,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
    </div>
  </section>
 
-<script src="./js/main.js"></script>
+<script src="../../web-design/js/main.js"></script>
 
 </body>
 </html>

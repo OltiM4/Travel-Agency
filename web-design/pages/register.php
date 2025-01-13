@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="../css/register.css"> <!-- Lidhja me skedarin CSS për stailizimin -->
+    <link rel="stylesheet" href="../../web-design/css/register.css"> <!-- Lidhja me skedarin CSS për stailizimin -->
 </head>
 <body>
-  
+
     <main>
         <div class="formStyle">
             <p id="registerForm">Register</p> <!-- Teksti për formën e regjistrimit -->
-            <form action="../config/cRegister.php" name="myForm" onsubmit="return validateFormRegister()" method="post"> <!-- Forma e regjistrimit me aksionin për të dërguar të dhënat -->
+            <form action="../../auth/config/cRegister.php" name="myForm" onsubmit="return validateFormRegister()" method="post"> <!-- Forma e regjistrimit me aksionin për të dërguar të dhënat -->
                 <label for="name" class="arrangeLabel" id="pak1">Name: </label><br> <!-- Etiketa për emrin -->
                 <input type="text" placeholder="Enter name..." name="name"><br> <!-- Fusha për emrin -->
                 <span class="error" id="errorname"></span><br> <!-- Mesazhi për gabime me emrin -->
@@ -35,6 +35,6 @@
         </div>
     </main>
 
-    <script src="../js/register.js"></script> <!-- Lidhja me skedarin JavaScript për funksionalitetin -->
+    <script src="../../web-design/js/register.js"></script> <!-- Lidhja me skedarin JavaScript për funksionalitetin -->
 </body>
 </html>

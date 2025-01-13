@@ -1,5 +1,5 @@
 <?php
-include '../config/config.php'; // Përfshini skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
+include '../../auth/config/config.php'; // Përfshini skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Merrni të dhënat e formës duke përdorur metodën POST

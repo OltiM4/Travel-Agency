@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include '../config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
+include '../../auth/config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
 
 $usersQuery = $conn->query("SELECT COUNT(*) FROM users");
 $numUsers = $usersQuery->fetch_assoc()['COUNT(*)']; // Merrni numrin total të përdoruesve nga tabela 'users'
@@ -22,8 +22,8 @@ $numBookings = $bookingsQuery->fetch_assoc()['COUNT(*)']; // Merrni numrin total
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../../web-design/css/style.css">
+    <link rel="stylesheet" href="../../web-design/css/dashboard.css">
     <title>Dashboard</title>
 </head>
 
@@ -150,7 +150,7 @@ body {
                         <li><a href="users.php" data-after="Users">Users</a></li>
                         <li><a href="bookings.php" data-after="Bookings">Bookings</a></li>
                         <li><a href="add_flight.php" data-after="Flights">Flights</a></li>
-                        <li><a href="../config/logout.php" data-after="Logout">Logout</a></li>
+                        <li><a href="../../auth/config/logout.php" data-after="Logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -190,7 +190,7 @@ body {
         </div>
     </section>
 
-    <script src="../js/main.js"></script> <!-- Lidhja e skedarit të skriptit JavaScript -->
+    <script src="../../web-design/js/main.js"></script> <!-- Lidhja e skedarit të skriptit JavaScript -->
 </body>
 
 </html>

@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include '../config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
+include '../../auth/config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
 
 $usersQuery = $conn->query("SELECT * FROM users");
 
@@ -40,8 +40,8 @@ $usersQuery = $conn->query("SELECT * FROM users");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/users.css">
+    <link rel="stylesheet" href="../../web-design/css/style.css">
+    <link rel="stylesheet" href="../../web-design/css/users.css">
     <title>Dashboard</title>
 </head>
 
@@ -151,7 +151,7 @@ $usersQuery = $conn->query("SELECT * FROM users");
         </div>
     </section>
 
-    <script src="../js/main.js"></script>
+    <script src="../../web-design/js/main.js"></script>
 </body>
 
 </html>

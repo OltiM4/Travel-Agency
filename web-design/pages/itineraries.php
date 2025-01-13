@@ -1,6 +1,6 @@
 <?php
 // Përfshi lidhjen me bazën e të dhënave
-include '../config/config.php';
+include '../../auth/config/config.php';
 
 // Mesazhi për sukses ose dështim
 $message = '';
@@ -39,7 +39,7 @@ $result = $conn->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../web-design/css/style.css">
     <title>Itineraret</title>
 </head>
 <body>

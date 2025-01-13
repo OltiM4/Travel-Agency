@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         // Nëse regjistrimi përfundon me sukses, dërgojmë përdoruesin në faqen e hyrjes
         echo "New record created successfully";
-        header("Location: ../pages/login.php"); 
+        header("Location: ../../web-design/pages/login.php"); 
         exit();
     } else {
         // Nëse ka ndonjë gabim, tregojmë gabimin

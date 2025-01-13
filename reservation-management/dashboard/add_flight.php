@@ -1,5 +1,5 @@
 <?php
-include '../config/config.php';
+include '../../auth/config/config.php';
 
 
 // Kontrollo nëse forma është dorëzuar

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../../web-design/css/style.css">
   <title>Home</title>
 </head>
 
@@ -171,7 +171,7 @@
     <div class="container">
         <h1 class="section-title">Shiko <span>Itineraret</span></h1>
         <p>Zbuloni udhëtimet dhe eksperiencat më të mira që ofrojmë!</p>
-        <a href="../pages/itineraries.php" class="btn">Shiko Itineraret</a>
+        <a href="../../web-design/pages/itineraries.php" class="btn">Shiko Itineraret</a>
     </div>
 </section>
 
@@ -287,7 +287,7 @@
       <p>Copyright © 2023 JO-NA. All rights reserved</p>
     </div>
   </section>
-  <script src="../js/main.js"></script>
+  <script src="../../web-design/js/main.js"></script>
 </body>
 
 </html>

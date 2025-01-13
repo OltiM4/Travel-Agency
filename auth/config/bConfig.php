@@ -1,12 +1,12 @@
 <?php
 
 // Lidhemi me bazën e të dhënave dhe fillojmë sesionin
-include 'config.php'; 
+include '../config/config.php'; 
 session_start();
 
 // Nëse s'je i kyçur, shko drejt në faqen e kyçjes
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../pages/login.php");
+    header("Location: ../web-design/pages/login.php");
     exit();
 }
 

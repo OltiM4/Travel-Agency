@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include '../config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
+include '../../auth/config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
 
 $bookingsQuery = $conn->query("SELECT * FROM bookings"); // Marrja e të gjitha prenotimeve nga tabela 'bookings'
 ?>
@@ -18,8 +18,8 @@ $bookingsQuery = $conn->query("SELECT * FROM bookings"); // Marrja e të gjitha 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/bookings.css">
+    <link rel="stylesheet" href="../../web-design/css/style.css">
+    <link rel="stylesheet" href="../../web-design/css/bookings.css">
     <title>Dashboard</title>
 </head>
 
@@ -40,7 +40,7 @@ $bookingsQuery = $conn->query("SELECT * FROM bookings"); // Marrja e të gjitha 
                         <li><a href="dashboard.php" data-after="Dashboard">Dashboard</a></li>
                         <li><a href="users.php" data-after="Users">Users</a></li>
                         <li><a href="bookings.php" data-after="Bookings">Bookings</a></li>
-                        <li><a href="../config/logout.php" data-after="Logout">Logout</a></li>
+                        <li><a href="../../auth/config/logout.php" data-after="Logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -118,7 +118,7 @@ $bookingsQuery = $conn->query("SELECT * FROM bookings"); // Marrja e të gjitha 
         </div>
     </section>
 
-    <script src="../js/main.js"></script> <!-- Lidhja e skedarit të skriptit JavaScript -->
+    <script src="../../web-design/js/main.js"></script> <!-- Lidhja e skedarit të skriptit JavaScript -->
 </body>
 
 </html>

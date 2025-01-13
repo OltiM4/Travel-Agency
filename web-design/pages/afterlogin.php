@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../../web-design/css/style.css">
   <title>Home</title>
 </head>
 
@@ -36,7 +36,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
             <li><a href="#about" data-after="About">About</a></li>
             <li><a href="#contact" data-after="Contact">Contact</a></li>
             <li><a href="book.php" data-after="Book">Book</a></li>
-            <li><a href="../config/logout.php" data-after="Home">LogOut</a></li>
+            <li><a href="../../auth/config/logout.php" data-after="Home">LogOut</a></li>
           </ul>
         </div>
       </div>
@@ -56,12 +56,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
             <a href="#slider-2"></a>
             <a href="#slider-3"></a>
           </div>
-
-
         </div>
-
-
-
         <div>
           <h1>JO-NA <span></span></h1>
           <h1>Travel <span></span></h1>
@@ -247,7 +242,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
       <p>Copyright © 2023 JO-NA. All rights reserved</p>
     </div>
   </section>
-  <script src="./js/main.js"></script>
+  <script src="../../web-design/js/main.js"></script>
 </body>
 
 </html>
