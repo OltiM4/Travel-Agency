@@ -193,4 +193,4 @@ body {
     <script src="../../web-design/js/main.js"></script> <!-- Lidhja e skedarit të skriptit JavaScript -->
 </body>
 
-</html>
+</html> 

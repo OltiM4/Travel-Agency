@@ -216,6 +216,24 @@
     }
 </style>
 
+<section id="flights" style="background-color: #f9f9f9; text-align: center; padding: 50px 20px; margin-top: 20px;">
+    <h2 style="font-size: 28px; color: #333; margin-bottom: 20px;">Explore Our Flights</h2>
+    <a href="/Travel-Agency/projekti/web-design/pages/flights.php" style="
+  padding: 15px 30px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+" onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='scale(1.05)';" 
+   onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='scale(1)';">
+  Shiko Fluturimet
+</a>
+</section>
 
 
   <section id="about">

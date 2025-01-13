@@ -200,6 +200,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
       </div>
     </div>
   </section>
+
+
   <section id="contact">
     <div class="contact container">
       <div>

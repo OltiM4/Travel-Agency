@@ -797,3 +797,33 @@ p {
 .footer-link:hover {
     background-color: #367c39; /* Darker green on hover */
 }
+
+#flights {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+#flights h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#flights table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#flights table th,
+#flights table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+#flights table th {
+    background-color: #4CAF50;
+    color: white;
+}
