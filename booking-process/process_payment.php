@@ -1,20 +1,19 @@
 <?php
 session_start();
-include '../auth/config/config.php'; // Ensure the path is correct
+include '../auth/config/config.php'; 
 
-// Handle payment submission
+
 $paymentSuccessful = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['payment_submit'])) {
-    $amount = (double) $_POST['amount']; // Ensure the amount is treated as a number
+    $amount = (double) $_POST['amount']; 
     $method = $_POST['method'];
-    $user_id = (int) $_SESSION['user_id']; // Make sure user_id is set in the session
-
-    // Prepare SQL query
+    $user_id = (int) $_SESSION['user_id']; 
+    
     $stmt = $conn->prepare("INSERT INTO Payments (user_id, amount, payment_method, payment_status) VALUES (?, ?, ?, 'Pending')");
-    $stmt->bind_param("ids", $user_id, $amount, $method); // Updated to "ids" (integer, double, string)
+    $stmt->bind_param("ids", $user_id, $amount, $method); 
     
     if ($stmt->execute()) {
-        $paymentSuccessful = true; // Set flag to true on success
+        $paymentSuccessful = true; 
     } else {
         echo "<p>Error submitting payment: " . $stmt->error . "</p>";
     }

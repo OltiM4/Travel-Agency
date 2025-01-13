@@ -1,6 +1,6 @@
 <?php
-// Include the database configuration file
-include '../../auth/config/config.php';  // Corrected path
+
+include '../../auth/config/config.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rating = (int)$_POST['rating'];

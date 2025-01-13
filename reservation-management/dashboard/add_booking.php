@@ -1,18 +1,18 @@
 <?php
-include '../../auth/config/config.php'; // Përfshini skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
+include '../../auth/config/config.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Merrni të dhënat e formës duke përdorur metodën POST
-    $user_id = $conn->real_escape_string($_POST['user_id']); // Merrni ID e përdoruesit
-    $name = $conn->real_escape_string($_POST['name']); // Merrni emrin
-    $surname = $conn->real_escape_string($_POST['surname']); // Merrni mbiemrin
-    $email = $conn->real_escape_string($_POST['email']); // Merrni adresën email
-    $phone = $conn->real_escape_string($_POST['phone']); // Merrni numrin e telefonit
-    $address = $conn->real_escape_string($_POST['address']); // Merrni adresën
-    $location = $conn->real_escape_string($_POST['location']); // Merrni vendndodhjen
-    $guests = intval($_POST['guests']); // Konvertoni numrin e vizitorëve në integer
-    $arrival_date = $conn->real_escape_string($_POST['arrival_date']); // Merrni datën e arritjes
-    $leaving_date = $conn->real_escape_string($_POST['leaving_date']); // Merrni datën e largimit
+    
+    $user_id = $conn->real_escape_string($_POST['user_id']); 
+    $name = $conn->real_escape_string($_POST['name']); 
+    $surname = $conn->real_escape_string($_POST['surname']); 
+    $email = $conn->real_escape_string($_POST['email']); 
+    $phone = $conn->real_escape_string($_POST['phone']); 
+    $address = $conn->real_escape_string($_POST['address']); 
+    $location = $conn->real_escape_string($_POST['location']); 
+    $guests = intval($_POST['guests']); 
+    $arrival_date = $conn->real_escape_string($_POST['arrival_date']); 
+    $leaving_date = $conn->real_escape_string($_POST['leaving_date']); 
 
     $sql = "INSERT INTO bookings (user_id, name, surname, email, phone, address, location, guests, arrival_date, leaving_date) VALUES ('$user_id', '$name', '$surname', '$email', '$phone', '$address', '$location', $guests, '$arrival_date', '$leaving_date')";
 

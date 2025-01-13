@@ -1,14 +1,13 @@
 <?php
-// Start the session
+
 session_start();
 
-// Database connection
 $conn = new mysqli("localhost", "root", "", "travel_agency");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle registration
+
 if (isset($_POST['register'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -24,7 +23,7 @@ if (isset($_POST['register'])) {
     }
 }
 
-// Handle login
+
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -46,7 +45,7 @@ if (isset($_POST['login'])) {
     }
 }
 
-// Handle logout
+
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: traveler.php");

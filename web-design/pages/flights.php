@@ -2,22 +2,20 @@
 session_start();
 include '../../auth/config/config.php';
 
-// Kontrolloni nëse përdoruesi është i kyçur
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../auth/login.php");
     exit();
 }
 
-// Merr të gjitha fluturimet nga baza e të dhënave
+
 $flightsQuery = $conn->query("SELECT * FROM flights");
 
-// Shto rezervim ose anulo rezervim
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action']) && $_POST['action'] == 'reserve') {
         $flight_id = $_POST['flight_id'];
         $user_id = $_SESSION['user_id'];
 
-        // Shto rezervimin në tabelën 'bookings'
         $stmt = $conn->prepare("INSERT INTO bookings (user_id, flight_id, booking_status) VALUES (?, ?, 'reserved')");
         $stmt->bind_param("ii", $user_id, $flight_id);
         $stmt->execute();

@@ -1,4 +1,4 @@
-// Kjo është funksioni JavaScript për validimin e formës së regjistrimit.
+
 
 function validateFormRegister() {
     var name = document.forms["myForm"]["name"].value;

@@ -1,15 +1,15 @@
 <?php
 session_start(); 
 
-// Kontrolloni nëse përdoruesi është i kyçur në sesion, nëse jo, ridrejtohuni në faqen e hyrjes (login)
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../pageslogin.php");
     exit();
 }
 
-include '../../auth/config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
+include '../../auth/config/config.php'; 
 
-$bookingsQuery = $conn->query("SELECT * FROM bookings"); // Marrja e të gjitha prenotimeve nga tabela 'bookings'
+$bookingsQuery = $conn->query("SELECT * FROM bookings"); 
 ?>
 
 <!DOCTYPE html>
@@ -118,7 +118,7 @@ $bookingsQuery = $conn->query("SELECT * FROM bookings"); // Marrja e të gjitha 
         </div>
     </section>
 
-    <script src="../../web-design/js/main.js"></script> <!-- Lidhja e skedarit të skriptit JavaScript -->
+    <script src="../../web-design/js/main.js"></script> 
 </body>
 
 </html>

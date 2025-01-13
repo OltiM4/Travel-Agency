@@ -1,18 +1,17 @@
 <?php
 session_start();
 
-// Check if the user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../pages/login.php");
     exit();
 }
 
-include '../../auth/config/config.php'; // Include the database configuration file
+include '../../auth/config/config.php'; 
 
-// Fetch all users
+
 $usersQuery = $conn->query("SELECT * FROM users");
 
-// Delete user
+
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $userId = $_GET['id'];
     $deleteQuery = $conn->prepare("DELETE FROM users WHERE id = ?");
@@ -20,7 +19,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     $deleteQuery->execute();
 }
 
-// Edit user
+
 if (isset($_POST['action']) && $_POST['action'] == 'edit') {
     $userId = $_POST['id'];
     $name = $_POST['name'];
@@ -33,7 +32,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'edit') {
     $updateQuery->execute();
 }
 
-// Fetch user by email
+
 if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['email'])) {
     $email = $_GET['email'];
     $getByEmailQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");

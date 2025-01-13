@@ -1,17 +1,17 @@
 <?php
-// Përfshi lidhjen me bazën e të dhënave
+
 include '../../auth/config/config.php';
 
-// Mesazhi për sukses ose dështim
+
 $message = '';
 
-// Kontrollo nëse forma është dorëzuar
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reserve'])) {
     $itinerary_id = $_POST['itinerary_id'];
     $traveler_id = $_POST['traveler_id'];
     $details = $_POST['details'];
 
-    // Shto rezervimin në tabelën `reservations`
+
     $stmt = $conn->prepare("INSERT INTO reservations (itinerary_id, traveler_id, details) VALUES (?, ?, ?)");
     $stmt->bind_param("iis", $itinerary_id, $traveler_id, $details);
 
@@ -24,12 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reserve'])) {
     }
 }
 
-// Kontrollo nëse duhet të shfaqet mesazhi i suksesit pas redirektimit
+
 if (isset($_GET['success']) && $_GET['success'] == 1) {
     $message = "Rezervimi u bë me sukses!";
 }
 
-// Merr të gjitha itineraret bazë nga tabela `itineraries`
+
 $query = "SELECT * FROM itineraries";
 $result = $conn->query($query);
 ?>
@@ -48,7 +48,7 @@ $result = $conn->query($query);
             <h1 class="section-title">Eksploroni <span>Itineraret</span></h1>
             <p>Zbuloni eksperiencat dhe udhëtimet më të mira që kemi për ju!</p>
 
-            <!-- Mesazhi për sukses ose dështim -->
+           
             <?php if ($message): ?>
                 <p class="message"><?= htmlspecialchars($message); ?></p>
             <?php endif; ?>
@@ -74,7 +74,7 @@ $result = $conn->query($query);
     </section>
 
     <style>
-        /* CSS për stilizimin */
+      
         #itineraries {
             padding: 50px 0;
             background-color: #f4f4f9;
