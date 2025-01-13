@@ -1,16 +1,18 @@
 <?php
-session_start(); 
+session_start();
 
-// Kontrolloni nëse përdoruesi është i kyçur në sesion, nëse jo, ridrejtohuni në faqen e hyrjes (login)
+// Check if the user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../pages/login.php");
     exit();
 }
 
-include '../../auth/config/config.php'; // Përfshijeni skedarin e konfigurimit për të vendosur një lidhje me bazën e të dhënave
+include '../../auth/config/config.php'; // Include the database configuration file
 
+// Fetch all users
 $usersQuery = $conn->query("SELECT * FROM users");
 
+// Delete user
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $userId = $_GET['id'];
     $deleteQuery = $conn->prepare("DELETE FROM users WHERE id = ?");
@@ -18,6 +20,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     $deleteQuery->execute();
 }
 
+// Edit user
 if (isset($_POST['action']) && $_POST['action'] == 'edit') {
     $userId = $_POST['id'];
     $name = $_POST['name'];
@@ -30,10 +33,16 @@ if (isset($_POST['action']) && $_POST['action'] == 'edit') {
     $updateQuery->execute();
 }
 
-$usersQuery = $conn->query("SELECT * FROM users");
+// Fetch user by email
+if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['email'])) {
+    $email = $_GET['email'];
+    $getByEmailQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $getByEmailQuery->bind_param("s", $email);
+    $getByEmailQuery->execute();
+    $result = $getByEmailQuery->get_result();
+    $userByEmail = $result->fetch_assoc();
+}
 ?>
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,75 +79,70 @@ $usersQuery = $conn->query("SELECT * FROM users");
     </section>
 
     <section id="users">
-    <div class="users container">
-        <h1>All Users</h1>
-        <form method="POST" action="add_user.php">
-            <label for="name">Name:</label>
-            <input type="text" name="name" required>
-            <label for="surname">Surname:</label>
-            <input type="text" name="surname" required>
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-            <label for="user_type">User Type:</label>
-            <input type="text" name="user_type" required>
-            <button type="submit">Add User</button>
-        </form>
+        <div class="users container">
+            <h1>All Users</h1>
+            <form method="POST" action="add_user.php">
+                <label for="name">Name:</label>
+                <input type="text" name="name" required>
+                <label for="surname">Surname:</label>
+                <input type="text" name="surname" required>
+                <label for="email">Email:</label>
+                <input type="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <label for="user_type">User Type:</label>
+                <input type="text" name="user_type" required>
+                <button type="submit">Add User</button>
+            </form>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>User Type</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $usersQuery->fetch_assoc()) { ?>
+            <h2>Search User By Email</h2>
+            <form method="GET" action="users.php">
+                <label for="email">Enter Email:</label>
+                <input type="email" name="email" required>
+                <input type="hidden" name="action" value="getByEmail">
+                <button type="submit">Search</button>
+            </form>
+
+            <?php if (isset($userByEmail)) { ?>
+                <h3>User Found:</h3>
+                <p><strong>ID:</strong> <?php echo $userByEmail['id']; ?></p>
+                <p><strong>Name:</strong> <?php echo $userByEmail['name']; ?></p>
+                <p><strong>Surname:</strong> <?php echo $userByEmail['surname']; ?></p>
+                <p><strong>Email:</strong> <?php echo $userByEmail['email']; ?></p>
+                <p><strong>User Type:</strong> <?php echo $userByEmail['user_type']; ?></p>
+            <?php } ?>
+
+            <table>
+                <thead>
                     <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['surname']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['password']; ?></td>
-                        <td><?php echo $row['user_type']; ?></td>
-                        <td>
-                            <a href="users.php?action=edit&id=<?php echo $row['id']; ?>">Edit</a>
-                            <a href="users.php?action=delete&id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure to delete this user?')">Delete</a>
-                        </td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>User Type</th>
+                        <th>Action</th>
                     </tr>
-                <?php } ?>
-
-                <?php
-                if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
-                    $userId = $_GET['id'];
-                    $userQuery = $conn->prepare("SELECT * FROM users WHERE id = ?");
-                    $userQuery->bind_param("i", $userId);
-                    $userQuery->execute();
-                    $result = $userQuery->get_result();
-                    $user = $result->fetch_assoc();
-                    ?>
-                    <form method="post">
-                        <input type="hidden" name="action" value="edit">
-                        <input type="hidden" name="id" value="<?php echo $userId; ?>">
-                        <input type="text" name="name" value="<?php echo $user['name']; ?>" required>
-                        <input type="text" name="surname" value="<?php echo $user['surname']; ?>" required>
-                        <input type="email" name="email" value="<?php echo $user['email']; ?>" required>
-                        <input type="text" name="user_type" value="<?php echo $user['user_type']; ?>" required>
-                        <button type="submit">Update User</button>
-                    </form>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-</section>
+                </thead>
+                <tbody>
+                    <?php while ($row = $usersQuery->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['surname']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['password']; ?></td>
+                            <td><?php echo $row['user_type']; ?></td>
+                            <td>
+                                <a href="users.php?action=edit&id=<?php echo $row['id']; ?>">Edit</a>
+                                <a href="users.php?action=delete&id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure to delete this user?')">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <section id="footer">
         <div class="footer container">
