@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Kontrollo nëse përdoruesi është autentikuar
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../pages/login.php");
     exit();
@@ -9,19 +8,18 @@ if (!isset($_SESSION['user_id'])) {
 
 include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php';
 
-// Merr të gjithë përdoruesit
+
 $usersQuery = $conn->query("SELECT * FROM users");
 
-// Fshi një përdorues
+
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $userId = $_GET['id'];
 
-    // Fshij rezervimet që lidhen me këtë përdorues
     $deleteBookingsQuery = $conn->prepare("DELETE FROM bookings WHERE user_id = ?");
     $deleteBookingsQuery->bind_param("i", $userId);
     $deleteBookingsQuery->execute();
 
-    // Fshi përdoruesin
+ 
     $deleteQuery = $conn->prepare("DELETE FROM users WHERE id = ?");
     $deleteQuery->bind_param("i", $userId);
     if ($deleteQuery->execute()) {
@@ -32,7 +30,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     }
 }
 
-// Redakto një përdorues
+
 if (isset($_POST['action']) && $_POST['action'] == 'edit') {
     $userId = $_POST['id'];
     $name = $_POST['name'];
@@ -50,7 +48,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'edit') {
     }
 }
 
-// Merr të dhënat për një përdorues për redaktim
+
 if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
     $userId = $_GET['id'];
     $getUserQuery = $conn->prepare("SELECT * FROM users WHERE id = ?");
@@ -60,7 +58,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
     $userData = $result->fetch_assoc();
 }
 
-// Kërko përdorues sipas email-it
+
 if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['email'])) {
     $email = $_GET['email'];
     $getByEmailQuery = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -139,7 +137,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['em
                 <p><strong>User Type:</strong> <?php echo $userByEmail['user_type']; ?></p>
             <?php } ?>
 
-            <!-- Pjesa e redaktimit të përdoruesit -->
+     
             <?php if (isset($userData)) { ?>
                 <h2>Edit User</h2>
                 <form method="POST" action="users.php">

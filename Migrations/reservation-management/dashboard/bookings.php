@@ -1,16 +1,15 @@
 <?php
 session_start();
 
-// Kontrollo nëse përdoruesi është autentikuar
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../../../Models/web-design/pages/login.php");
     exit();
 }
 
-// Përfshi konfigurimin
-include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php';  // Përfshi konfigurimin e rrugës absolute
+include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php'; 
 
-// Merr të gjitha rezervimet
+
 $bookingsQuery = $conn->query("SELECT * FROM bookings");
 if (!$bookingsQuery) {
     die("Gabim në marrjen e të dhënave: " . $conn->error);

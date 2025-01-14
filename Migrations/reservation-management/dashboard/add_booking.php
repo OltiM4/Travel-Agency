@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php'; //Sigurohuni që rruga të jetë e saktë
+include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
