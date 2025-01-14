@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PHP: Serve",
+            "type": "php",
+            "request": "launch",
+            "runtimeExecutable": "php", 
+            "runtimeArgs": [
+                "-S",
+                "localhost:8080" 
+            ],
+            "cwd": "${workspaceFolder}",
+            "port": 9000,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}"
+            }
+        }
+    ]
+}
