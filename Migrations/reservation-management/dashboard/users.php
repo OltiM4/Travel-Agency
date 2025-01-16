@@ -1,12 +1,24 @@
 <?php
 session_start();
 
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../pages/login.php");
     exit();
 }
 
-include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php';
+
+$includePath = $_SERVER['DOCUMENT_ROOT'] . '/Travel-Agency/Data/auth/config/config.php';
+if (file_exists($includePath)) {
+    include $includePath;
+} else {
+    die("Error: Could not include the database configuration file.");
+}
+
+
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
 
 
 $usersQuery = $conn->query("SELECT * FROM users");
@@ -19,7 +31,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     $deleteBookingsQuery->bind_param("i", $userId);
     $deleteBookingsQuery->execute();
 
- 
     $deleteQuery = $conn->prepare("DELETE FROM users WHERE id = ?");
     $deleteQuery->bind_param("i", $userId);
     if ($deleteQuery->execute()) {
@@ -68,6 +79,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['em
     $userByEmail = $result->fetch_assoc();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,7 +88,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['em
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../Models/web-design/css/style.css">
     <link rel="stylesheet" href="../../../Models/web-design/css/users.css">
-    <title>Dashboard</title>
+    <title>Users</title>
 </head>
 
 <body>
@@ -96,8 +108,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['em
                         <li><a href="dashboard.php" data-after="Dashboard">Dashboard</a></li>
                         <li><a href="users.php" data-after="Users">Users</a></li>
                         <li><a href="bookings.php" data-after="Bookings">Bookings</a></li>
-                        <li><a href="../config/logout.php" data-after="Logout">Logout</a></li>
-                    </ul>
+                        <li><a href="add_flight.php" data-after="Flights">Flights</a></li>
+                        <li><a href="traveler.php" data-after="Traveler">Traveler</a></li>
+                        <li><a href="/Travel-Agency/Data/auth/config/logout.php" data-after="Logout">Logout</a></li>
+                        </ul>
                 </div>
             </div>
         </div>
@@ -137,7 +151,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'getByEmail' && isset($_GET['em
                 <p><strong>User Type:</strong> <?php echo $userByEmail['user_type']; ?></p>
             <?php } ?>
 
-     
             <?php if (isset($userData)) { ?>
                 <h2>Edit User</h2>
                 <form method="POST" action="users.php">

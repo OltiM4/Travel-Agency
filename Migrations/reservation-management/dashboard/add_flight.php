@@ -1,5 +1,16 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php';
+
+$includePath = $_SERVER['DOCUMENT_ROOT'] . '/Travel-Agency/Data/auth/config/config.php';
+if (file_exists($includePath)) {
+    include $includePath;
+} else {
+    die("Error: Could not include the database configuration file.");
+}
+
+
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $flight_number = $_POST['flight_number'];
@@ -28,13 +39,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../../../Models/web-design/css/flights.css">
 </head>
 <body>
-    <section id="header">
+<section id="header">
         <div class="header container">
             <div class="nav-bar">
                 <div class="brand">
                     <a href="dashboard.php">
-                        <h1>JO-NA</h1>
+                        <h1><span>JO</span>-NA</h1>
                     </a>
+                </div>
+                <div class="nav-list">
+                    <ul>
+                    <li><a href="dashboard.php" data-after="Dashboard">Dashboard</a></li>
+                        <li><a href="users.php" data-after="Users">Users</a></li>
+                        <li><a href="bookings.php" data-after="Bookings">Bookings</a></li>
+                        <li><a href="add_flight.php" data-after="Flights">Flights</a></li>
+                        <li><a href="traveler.php" data-after="Traveler">Traveler</a></li>
+                        <li><a href="/Travel-Agency/Data/auth/config/logout.php" data-after="Logout">Logout</a></li>
+                        </ul>
                 </div>
             </div>
         </div>

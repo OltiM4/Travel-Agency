@@ -1,5 +1,16 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php'; 
+
+$includePath = $_SERVER['DOCUMENT_ROOT'] . '/Travel-Agency/Data/auth/config/config.php';
+if (file_exists($includePath)) {
+    include $includePath;
+} else {
+    die("Error: Could not include the database configuration file.");
+}
+
+
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     

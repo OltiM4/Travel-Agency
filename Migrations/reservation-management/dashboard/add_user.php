@@ -1,5 +1,17 @@
 <?php
-include __DIR__ . '/../../../../Data/auth/config/config.php'; 
+
+$includePath = $_SERVER['DOCUMENT_ROOT'] . '/Travel-Agency/Data/auth/config/config.php';
+if (file_exists($includePath)) {
+    include $includePath;
+} else {
+    die("Error: Could not include the database configuration file.");
+}
+
+
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = trim($_POST['name']);
@@ -13,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Të gjitha fushat janë të detyrueshme!");
     }
 
-  
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         die("Email-i nuk është i vlefshëm!");
     }
@@ -28,16 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Gabim në përgatitjen e pyetjes: " . $conn->error);
     }
 
-  
+    
     $stmt->bind_param("ssssi", $name, $surname, $email, $hashed_password, $user_type);
 
-    
     if ($stmt->execute()) {
         echo "Përdoruesi është shtuar me sukses!";
     } else {
         echo "Gabim gjatë shtimit të përdoruesit: " . $stmt->error;
     }
-
 
     $stmt->close();
     $conn->close();

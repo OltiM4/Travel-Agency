@@ -41,7 +41,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
 
 <section class="booking">
    <h1 class="heading-title">book your trip!</h1>
-   <form action="../../../UnitOfWork/booking-process/process_payment.php" method="post" class="book-form">
+   <form action="../../../Controllers/payment/process_payment.php" method="post" class="book-form">
       <div class="flex">
          <div class="inputBox">
             <span>phone :</span>

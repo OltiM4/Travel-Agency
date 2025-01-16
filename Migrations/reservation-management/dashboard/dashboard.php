@@ -7,9 +7,18 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php';
+
+$includePath = $_SERVER['DOCUMENT_ROOT'] . '/Travel-Agency/Data/auth/config/config.php';
+if (file_exists($includePath)) {
+    include $includePath;
+} else {
+    die("Error: Could not include the database configuration file.");
+}
 
 
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
 
 
 $usersQuery = $conn->query("SELECT COUNT(*) FROM users");
@@ -26,14 +35,11 @@ $numBookings = $bookingsQuery->fetch_assoc()['COUNT(*)'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../web-design/css/style.css">
-<link rel="stylesheet" href="../web-design/css/dashboard.css">
+    <link rel="stylesheet" href="../web-design/css/dashboard.css">
     <title>Dashboard</title>
 </head>
 
 <style>
-
-
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -77,7 +83,6 @@ body {
     margin-left: 20px;
 }
 
-
 #dashboard {
     text-align: center;
 }
@@ -111,6 +116,7 @@ body {
     margin-bottom: 20px;
     color: #666;
 }
+
 .info-item button {
     background-color: #007bff;
     color: white;
@@ -132,7 +138,6 @@ body {
         width: 100%; 
     }
 }
-
 </style>
 
 <body>
@@ -153,47 +158,39 @@ body {
                         <li><a href="users.php" data-after="Users">Users</a></li>
                         <li><a href="bookings.php" data-after="Bookings">Bookings</a></li>
                         <li><a href="add_flight.php" data-after="Flights">Flights</a></li>
-                        <li><a href="../../auth/config/logout.php" data-after="Logout">Logout</a></li>
-                    </ul>
+                        <li><a href="traveler.php">Travelers</a></li>
+                        <li><a href="/Travel-Agency/Data/auth/config/logout.php" data-after="Logout">Logout</a></li>
+                        </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="dashboard">
-    <div class="dashboard container">
-        <div class="dashboard-info">
-        <div class="info-item">
-            <h2>Total Users</h2>
-            <p><?php echo $numUsers; ?></p>
-            <button onclick="location.href='users.php'">Read More</button>
-        </div>
-        <div class="info-item">
-            <h2>Total Bookings</h2>
-            <p><?php echo $numBookings; ?></p>
-            <button onclick="location.href='bookings.php'">Read More</button>
-        </div>
-        <div class="info-item">
-            <h2>Total Flights</h2>
-            <p><?php echo $numBookings; ?></p>
-            <button onclick="location.href='add_flight.php'">Read More</button>
-        </div>
-        </div>
-    </div>
-</section>
-
-    <section id="footer">
-        <div class="footer container">
-            <div class="brand">
-                <h1><span>JO</span>- NA</h1>
+        <div class="dashboard container">
+            <div class="dashboard-info">
+                <div class="info-item">
+                    <h2>Total Users</h2>
+                    <p><?php echo $numUsers; ?></p>
+                    <button onclick="location.href='users.php'">Read More</button>
+                </div>
+                <div class="info-item">
+                    <h2>Total Bookings</h2>
+                    <p><?php echo $numBookings; ?></p>
+                    <button onclick="location.href='bookings.php'">Read More</button>
+                </div>
+                <div class="info-item">
+                    <h2>Total Flights</h2>
+                    <p><?php echo $numBookings; ?></p>
+                    <button onclick="location.href='add_flight.php'">More</button>
+                </div>
             </div>
-            <div class="social-icon">
-            </div>
-            <p>&copy; 2023 JO-NA. All rights reserved</p>
         </div>
     </section>
+
+    
 
     <script src="../web-design/js/main.js"></script>
 </body>
 
-</html> 
+</html>

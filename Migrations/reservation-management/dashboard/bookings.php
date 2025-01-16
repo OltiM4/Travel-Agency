@@ -1,13 +1,40 @@
 <?php
-session_start();
 
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../../../../Models/web-design/pages/login.php");
-    exit();
+$includePath = $_SERVER['DOCUMENT_ROOT'] . '/Travel-Agency/Data/auth/config/config.php';
+if (file_exists($includePath)) {
+    include $includePath;
+} else {
+    die("Error: Could not include the database configuration file.");
 }
 
-include $_SERVER['DOCUMENT_ROOT'] . '/project/Data/auth/config/config.php'; 
+
+if (!isset($conn)) {
+    die("Database connection not established.");
+}
+
+$message = ""; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $user_id = $conn->real_escape_string($_POST['user_id']); 
+    $name = $conn->real_escape_string($_POST['name']); 
+    $surname = $conn->real_escape_string($_POST['surname']); 
+    $email = $conn->real_escape_string($_POST['email']); 
+    $phone = $conn->real_escape_string($_POST['phone']); 
+    $address = $conn->real_escape_string($_POST['address']); 
+    $location = $conn->real_escape_string($_POST['location']); 
+    $guests = intval($_POST['guests']); 
+    $arrival_date = $conn->real_escape_string($_POST['arrival_date']); 
+    $leaving_date = $conn->real_escape_string($_POST['leaving_date']); 
+
+    $sql = "INSERT INTO bookings (user_id, name, surname, email, phone, address, location, guests, arrival_date, leaving_date) VALUES ('$user_id', '$name', '$surname', '$email', '$phone', '$address', '$location', $guests, '$arrival_date', '$leaving_date')";
+
+    if ($conn->query($sql) === TRUE) {
+        $message = "Rezervimi u shtua me sukses!";
+    } else {
+        $message = "Gabim: " . $conn->error;
+    }
+}
 
 
 $bookingsQuery = $conn->query("SELECT * FROM bookings");
@@ -33,16 +60,18 @@ if (!$bookingsQuery) {
             <div class="nav-bar">
                 <div class="brand">
                     <a href="dashboard.php">
-                        <h1><span>JO</span>- NA</h1>
+                        <h1><span>JO</span>-NA</h1>
                     </a>
                 </div>
                 <div class="nav-list">
                     <ul>
-                        <li><a href="dashboard.php">Dashboard</a></li>
-                        <li><a href="users.php">Users</a></li>
-                        <li><a href="bookings.php">Bookings</a></li>
-                        <li><a href="../../../../Data/auth/config/logout.php">Logout</a></li>
-                    </ul>
+                    <li><a href="dashboard.php" data-after="Dashboard">Dashboard</a></li>
+                        <li><a href="users.php" data-after="Users">Users</a></li>
+                        <li><a href="bookings.php" data-after="Bookings">Bookings</a></li>
+                        <li><a href="add_flight.php" data-after="Flights">Flights</a></li>
+                        <li><a href="traveler.php" data-after="Traveler">Traveler</a></li>
+                        <li><a href="/Travel-Agency/Data/auth/config/logout.php" data-after="Logout">Logout</a></li>
+                        </ul>
                 </div>
             </div>
         </div>
@@ -51,7 +80,12 @@ if (!$bookingsQuery) {
     <section id="bookings">
         <div class="bookings container">
             <h1>All Bookings</h1>
-            <form method="POST" action="add_booking.php">
+            
+            <?php if (!empty($message)) { ?>
+                <p style="color: green; font-weight: bold;"> <?php echo $message; ?> </p>
+            <?php } ?>
+
+            <form method="POST" action="">
                 <label for="user_id">User ID:</label>
                 <input type="text" name="user_id" required>
                 <label for="name">Name:</label>
@@ -111,7 +145,7 @@ if (!$bookingsQuery) {
     <section id="footer">
         <div class="footer container">
             <div class="brand">
-                <h1><span>JO</span>- NA</h1>
+                <h1><span>JO</span>-NA</h1>
             </div>
             <p>&copy; 2023 JO-NA. All rights reserved</p>
         </div>

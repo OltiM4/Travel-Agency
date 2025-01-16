@@ -36,6 +36,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] != 0) {
             <li><a href="#about" data-after="About">About</a></li>
             <li><a href="#contact" data-after="Contact">Contact</a></li>
             <li><a href="book.php" data-after="Book">Book</a></li>
+            <li><a href="hotel.php" data-after="Hotel">Hotel</a></li>
             <li><a href="../../../Data/auth/config/logout.php" data-after="Home">LogOut</a></li>
           </ul>
         </div>
